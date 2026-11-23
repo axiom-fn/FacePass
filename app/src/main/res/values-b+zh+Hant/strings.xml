@@ -1,0 +1,17 @@
+<resources>
+    <string name="xposed_description">讓 ColorOS 人臉可用於白名單內應用的 BiometricPrompt。作者：CC</string>
+    <string name="status_ready">已允許 %1$d 個應用使用人臉，變更立即生效</string>
+    <string name="status_no_service">未連接到 LSPosed：請在 LSPosed 中啟用本模組後重新開啟此介面</string>
+    <string name="hint">只有勾選的應用會在生物辨識驗證中出現人臉，其他應用保持原生（僅指紋）。勾選後仍沒有人臉時，可在 LSPosed 日誌（FacePass）中查看實際發起驗證的包名。</string>
+    <string name="search_hint">搜尋應用名稱或包名</string>
+    <string name="show_system">顯示系統應用</string>
+    <string name="loading">正在載入應用列表…</string>
+    <string name="no_match">沒有符合的應用</string>
+    <string name="test_fluid_cloud">測試流體雲（人臉提示）</string>
+    <string name="fluid_channel_name">人臉辨識提示</string>
+    <string name="fluid_title">正在尋找你的臉孔</string>
+    <string name="fluid_text">流體雲測試，8 秒後自動消失</string>
+    <string name="fluid_chip">人臉</string>
+    <string name="fluid_need_permission">需要通知權限才能測試，請允許後再點一次</string>
+    <string name="fluid_result">已發送。請看頂部是否出現流體雲。\n可推廣通知權限：%1$s\n通知符合即時更新條件：%2$s\n系統已標記為即時更新：%3$s</string>
+</resources>
