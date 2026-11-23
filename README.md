@@ -33,7 +33,7 @@ FacePass 不注入任何應用，作用域固定為「系統框架」與「系�
 
 ## 需求
 
-- ColorOS 16（Android 16）
+- 僅支援 ColorOS 17
 - 支援 libxposed API 102 的 LSPosed
 
 ## 安裝
