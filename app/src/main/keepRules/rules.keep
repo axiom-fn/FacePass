@@ -1,5 +1,5 @@
 # Instantiated by the libxposed loader from META-INF/xposed/java_init.list.
 -dontwarn io.github.libxposed.annotation.**
--keep,allowoptimization public class com.cc.facepass.FacePassModule {
+-keep,allowoptimization public class io.github.axiom_fn.facepass.FacePassModule {
     public <init>();
 }

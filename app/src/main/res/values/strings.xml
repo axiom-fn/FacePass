@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FacePass</string>
-    <string name="xposed_description">让 ColorOS 人脸可用于白名单内应用的 BiometricPrompt。作者：CC</string>
+    <string name="xposed_description">让 ColorOS 人脸可用于白名单内应用的 BiometricPrompt。</string>
     <string name="status_ready">已允许 %1$d 个应用使用人脸，改动立即生效</string>
     <string name="status_no_service">未连接到 LSPosed：请在 LSPosed 中启用本模块后重新打开此界面</string>
     <string name="hint">只有勾选的应用会在生物识别验证中出现人脸，其他应用保持原生（仅指纹）。勾选后仍无人脸时，可在 LSPosed 日志（FacePass）中查看实际发起验证的包名。</string>

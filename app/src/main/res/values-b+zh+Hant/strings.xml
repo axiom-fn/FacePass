@@ -1,5 +1,5 @@
 <resources>
-    <string name="xposed_description">讓 ColorOS 人臉可用於白名單內應用的 BiometricPrompt。作者：CC</string>
+    <string name="xposed_description">讓 ColorOS 人臉可用於白名單內應用的 BiometricPrompt。</string>
     <string name="status_ready">已允許 %1$d 個應用使用人臉，變更立即生效</string>
     <string name="status_no_service">未連接到 LSPosed：請在 LSPosed 中啟用本模組後重新開啟此介面</string>
     <string name="hint">只有勾選的應用會在生物辨識驗證中出現人臉，其他應用保持原生（僅指紋）。勾選後仍沒有人臉時，可在 LSPosed 日誌（FacePass）中查看實際發起驗證的包名。</string>

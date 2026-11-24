@@ -9,17 +9,17 @@ val signing = rootProject.file("signing.properties").takeIf { it.exists() }
     ?.let { file -> Properties().apply { file.inputStream().use(::load) } }
 
 android {
-    namespace = "com.cc.facepass"
+    namespace = "io.github.axiom_fn.facepass"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.cc.facepass"
+        applicationId = "io.github.axiom_fn.facepass"
         minSdk = 35
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
 
     signingConfigs {
