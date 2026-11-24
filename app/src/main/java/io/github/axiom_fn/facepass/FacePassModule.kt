@@ -8,6 +8,7 @@ import io.github.axiom_fn.facepass.intervention.act.EarlySuccess
 import io.github.axiom_fn.facepass.intervention.act.FaceGate
 import io.github.axiom_fn.facepass.intervention.act.FaceHint
 import io.github.axiom_fn.facepass.intervention.act.ForegroundRecognition
+import io.github.axiom_fn.facepass.intervention.act.LegacyBridge
 import io.github.axiom_fn.facepass.intervention.act.PromptPanel
 import io.github.axiom_fn.facepass.intervention.witness.OutcomeWitness
 import io.github.axiom_fn.facepass.intervention.witness.PowerKeyWitness
@@ -23,7 +24,7 @@ class FacePassModule : XposedModule() {
 
     private val interventions: List<Intervention> = listOf(
         RequestIntake, OutcomeWitness, PowerKeyWitness, QueryWitness,
-        ForegroundRecognition, FaceGate, CameraTakeover, FaceHint, EarlySuccess,
+        ForegroundRecognition, FaceGate, CameraTakeover, FaceHint, EarlySuccess, LegacyBridge,
         PromptPanel,
     )
 

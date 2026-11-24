@@ -12,6 +12,7 @@ The ColorOS face sensor reports strength `4095`, which belongs to no Android cla
 - **Per-request judgment**:
   - Requests bound to a Keystore key (with a `CryptoObject`) use fingerprint only. Face is still a weak biometric to the system and cannot unlock such keys.
   - If the same app asks again within a few seconds after face succeeded (common with time-bound keys), that request uses fingerprint only. Turning the screen off clears this record.
+- **Older apps**: an app that still verifies through the legacy fingerprint API is carried into the same system prompt, so it gains face alongside fingerprint without being touched itself; if face is not recognised, fingerprint is still there. An app clone borrows the foreground user's face.
 - **Prompt panel**: the medium-size ColorOS panel, the same one fingerprint uses. Face and fingerprint start together, and the prompt continues by itself once face succeeds.
 - **Early face success**: if your face is already in front of the camera, the result is held until the prompt has finished appearing, so the system does not take it as a cancellation.
 - **Fluid Cloud hint**: a hint is shown in Fluid Cloud while face recognition runs.
@@ -23,7 +24,7 @@ FacePass injects into no app. Its scope is fixed to System Framework and System 
 
 | Where | What |
 |---|---|
-| system_server | Judges each request (face / fingerprint only / stock) and lets face pass the strength check only for requests judged face; handles the camera held by the lock screen and early face success; posts the Fluid Cloud hint |
+| system_server | Judges each request (face / fingerprint only / stock) and lets face pass the strength check only for requests judged face; carries a legacy fingerprint request into the prompt; handles the camera held by the lock screen and early face success; posts the Fluid Cloud hint |
 | SystemUI | Gives whitelisted apps the medium-size panel, removes the needless confirmation, starts fingerprint together with face |
 
 Face images and matching stay in the hardware and the secure environment (TEE). FacePass sees only success or failure.

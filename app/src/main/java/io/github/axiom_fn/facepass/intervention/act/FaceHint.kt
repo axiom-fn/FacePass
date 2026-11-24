@@ -33,8 +33,10 @@ object FaceHint : Act("face hint", Place.SYSTEM_SERVER) {
 
     private const val NOTIFICATIONS = "com.android.server.notification.NotificationManagerInternal"
 
-    /** Face sensors of each session the hint is shown for. */
-    private val showing: MutableMap<Any, Set<Int>> = Collections.synchronizedMap(WeakHashMap())
+    /** A hint on screen: the face sensors it stands for, and the user it was posted to. */
+    private class Shown(val faceIds: Set<Int>, val userId: Int)
+
+    private val showing: MutableMap<Any, Shown> = Collections.synchronizedMap(WeakHashMap())
 
     /** Sessions whose hint has gone; it does not come back. */
     private val done: MutableMap<Any, Boolean> = Collections.synchronizedMap(WeakHashMap())
@@ -73,7 +75,7 @@ object FaceHint : Act("face hint", Place.SYSTEM_SERVER) {
         val raw = chain.getThisObject()
         val sensorId = chain.getArgs().getOrNull(0) as? Int
         val error = chain.getArgs().getOrNull(2)
-        if (raw != null && error != CANCELED && showing[raw]?.contains(sensorId) == true) hide(raw)
+        if (raw != null && error != CANCELED && showing[raw]?.faceIds?.contains(sensorId) == true) hide(raw)
         chain.proceed()
     }
 
@@ -95,15 +97,17 @@ object FaceHint : Act("face hint", Place.SYSTEM_SERVER) {
             .setRequestPromotedOngoing(true)
             .setOnlyAlertOnce(true)
             .build()
-        poster.enqueue.invoke(poster.service, *poster.caller(), null, NOTIFICATION_ID, notification, session.userId)
-        showing[raw] = faceIds
+        // An app clone (user 999) asks from beside the foreground user; the module app and Fluid Cloud live in it.
+        val userId = Device.foregroundUser() ?: session.userId
+        poster.enqueue.invoke(poster.service, *poster.caller(), null, NOTIFICATION_ID, notification, userId)
+        showing[raw] = Shown(faceIds, userId)
     }
 
     private fun hide(raw: Any) {
         done[raw] = true
-        if (showing.remove(raw) == null) return
+        val shown = showing.remove(raw) ?: return
         val poster = poster() ?: return
-        runCatching { poster.cancel.invoke(poster.service, *poster.caller(), null, NOTIFICATION_ID, Session(raw).userId) }
+        runCatching { poster.cancel.invoke(poster.service, *poster.caller(), null, NOTIFICATION_ID, shown.userId) }
             .onFailure { Journal.error("$name: not removed", it) }
     }
 
